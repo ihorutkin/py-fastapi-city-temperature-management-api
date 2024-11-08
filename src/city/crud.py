@@ -26,5 +26,5 @@ async def create_city(db: AsyncSession, city: CreateCity) -> DBCity:
     )
     result = await db.execute(query)
     await db.commit()
-    resp = {**city.model_dump(), "id": result.lastrowid}
+    resp = {**city.model_dump(), "id": result.inserted_primary_key}
     return resp
